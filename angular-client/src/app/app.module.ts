@@ -11,6 +11,9 @@ import {AppRoutes, appRoutingProviders} from "./app.routing";
 import {GameService} from "./services/game.service";
 import { GameCardComponent } from './cards/game-card/game-card.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import {Ng2Webstorage} from "ng2-webstorage";
 
 @NgModule({
   declarations: [
@@ -19,13 +22,19 @@ import { LandingComponent } from './pages/landing/landing.component';
     HeaderComponent,
     FooterComponent,
     GameCardComponent,
-    LandingComponent
+    LandingComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutes
+    AppRoutes,
+    Ng2Webstorage.forRoot({
+      separator: '_',
+      prefix: ''
+    })
   ],
   providers: [
     appRoutingProviders,

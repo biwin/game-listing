@@ -1,16 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import {Http, Headers} from '@angular/http';
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-landing',
-  templateUrl: './landing.component.html',
-  styleUrls: ['./landing.component.sass']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.sass']
 })
-export class LandingComponent implements OnInit {
-
+export class SignupComponent implements OnInit {
   createUser = "http://localhost:3000/users";
-  created = false;
-  constructor(private _http: Http) { }
+  constructor(private _http: Http, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,7 +23,7 @@ export class LandingComponent implements OnInit {
       })
       .subscribe(res=>{
         if (res.status == 201){
-          this.created = true;
+          this.router.navigate(['/login'])
         }
       });
   }
