@@ -4,7 +4,8 @@
 var mongoose = require('mongoose');
 var express = require('express');
 var router = express.Router();
-
+var csv = require('csvtojson');
+var request = require('request');
 
 // CONNECT TO MONGO
 const dbHost = 'mongodb://localhost:27017/';
@@ -29,5 +30,25 @@ router.get('/', function (req, res) {
     res.send('API Server Works!');
 });
 
+
+// HELPER FUNCTIONS
+function InitDatabase() {
+    csv()
+        .fromStream(request.get('http://hck.re/fGVUJw'))
+        .on('json', function (obj) {
+            Game.findOne(obj, function (err, res) {
+                if (!res) {
+                    // Matching document not found
+
+                    var game = new Game(obj);
+                    game.save(function (error) {
+                        console.log("Couldn't save the game" + error);
+                    })
+                }
+            })
+        }).on('done', function (error) {
+        console.log(error);
+    })
+}
 
 module.exports = router;
