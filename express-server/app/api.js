@@ -10,7 +10,7 @@ const auth = require('../app/auth');
 const passport = require('passport');
 
 // CONNECT TO MONGO
-const dbHost = 'mongodb://localhost:27017/games-docked';
+const dbHost = 'mongodb://database/games';
 mongoose.connect(dbHost);
 
 
