@@ -37,6 +37,12 @@ router.get('/games', function (req, res) {
     })
 });
 
+router.get('/games/:id', function(req, res){
+    Game.findById(req.params.id, function(err, game){
+        if (err) res.status(500).send(err);
+        res.status(200).json(game);
+    })
+});
 
 // HELPER FUNCTIONS
 function InitDatabase() {
