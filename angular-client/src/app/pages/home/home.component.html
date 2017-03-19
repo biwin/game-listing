@@ -6,7 +6,6 @@ Sort
   <option *ngFor="let option of sortOptions" [value]="option.optionId">{{option.optionName}}</option>
 </select>
 
-<input
-  (keyup)="searchTerm.next($event.target.value)">
+<input (keyup)="query.next($event.target.value)">
 <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
 <app-footer></app-footer>
