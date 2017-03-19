@@ -8,7 +8,7 @@ var csv = require('csvtojson');
 var request = require('request');
 
 // CONNECT TO MONGO
-const dbHost = 'mongodb://localhost:27017/';
+const dbHost = 'mongodb://database/games-docker';
 mongoose.connect(dbHost);
 
 
