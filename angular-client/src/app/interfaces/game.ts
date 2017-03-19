@@ -3,5 +3,5 @@ export interface Game {
   platform: string,
   score: number,
   genre: string,
-  editors_choice: boolean
+  editors_choice: string
 }
