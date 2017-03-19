@@ -7,5 +7,10 @@
     "start": "node server.js"
   },
   "author": "Biwin John Joseph",
-  "license": "GPL-2.0"
+  "license": "GPL-2.0",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.0"
+  }
 }
