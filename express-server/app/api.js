@@ -41,9 +41,7 @@ function InitDatabase() {
                     // Matching document not found
 
                     var game = new Game(obj);
-                    game.save(function (error) {
-                        console.log("Couldn't save the game" + error);
-                    })
+                    game.save()
                 }
             })
         }).on('done', function (error) {
@@ -51,4 +49,7 @@ function InitDatabase() {
     })
 }
 
-module.exports = router;
+module.exports =  {
+    router: router,
+    init: InitDatabase
+};

@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
 });
 
 // SET ROUTES
-app.use('/', api);
+app.use('/', api.router);
 
 // SET PORT
 const port = process.env.PORT || '3000';
@@ -24,3 +24,5 @@ app.set('port', port);
 app.listen(port, function () {
     console.log('Express Server running on PORT ' + port)
 });
+
+api.init();
