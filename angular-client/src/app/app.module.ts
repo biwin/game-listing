@@ -10,6 +10,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import {AppRoutes, appRoutingProviders} from "./app.routing";
 import {GameService} from "./services/game.service";
 import { GameCardComponent } from './cards/game-card/game-card.component';
+import { LandingComponent } from './pages/landing/landing.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { GameCardComponent } from './cards/game-card/game-card.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    GameCardComponent
+    GameCardComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
