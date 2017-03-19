@@ -31,10 +31,20 @@ router.get('/', function (req, res) {
 });
 
 router.get('/games', function (req, res) {
-    Game.find({}, function(err, games){
-        if (err) res.status(500).send(err);
+    var searchTerm = req.query.query;
+    if (searchTerm.length>=1){
+        Game.find({title: { $regex: '.*' + searchTerm + '*.' }}, function(err, games){
+            if (err){
+                res.status(404).json({message: "No records found"});
+            }
+            res.status(200).json(games)
+        })
+    } else {
+    Game.find({}, function(err, games) {
+        if (err) res.status(404).json({message: "No records found"});
         res.status(200).json(games)
     })
+    }
 });
 
 router.get('/games/:id', function(req, res){
