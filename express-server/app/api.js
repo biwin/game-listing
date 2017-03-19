@@ -30,6 +30,13 @@ router.get('/', function (req, res) {
     res.send('API Server Works!');
 });
 
+router.get('/games', function (req, res) {
+    Game.find({}, function(err, games){
+        if (err) res.status(500).send(err);
+        res.status(200).json(games)
+    })
+});
+
 
 // HELPER FUNCTIONS
 function InitDatabase() {
