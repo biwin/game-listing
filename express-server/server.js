@@ -2,14 +2,25 @@
  * Created by biwin on 19/3/17.
  */
 var express = require('express');
+var api = require('./app/api');
+
 var app = express();
 
-
-app.get('/', function (req, res) {
-    res.send('API Server Works!');
+// CORS MIDDLEWARE
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next()
 });
 
+// SET ROUTES
+app.use('/', api);
 
-app.listen(3000, function () {
-    console.log('Express Server running on PORT 3000')
+// SET PORT
+const port = process.env.PORT || '3000';
+app.set('port', port);
+
+// START SERVER
+app.listen(port, function () {
+    console.log('Express Server running on PORT ' + port)
 });
