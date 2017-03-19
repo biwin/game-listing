@@ -1,0 +1,11 @@
+{
+  "name": "express-server",
+  "version": "1.0.0",
+  "description": "server for Capillary Games Listing",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Biwin John Joseph",
+  "license": "GPL-2.0"
+}
