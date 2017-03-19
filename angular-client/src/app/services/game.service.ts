@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
 import {Http} from "@angular/http";
+import {Observable} from "rxjs";
 import 'rxjs/add/operator/map'
-
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+import 'rxjs/add/operator/switchMap';
 
 @Injectable()
 export class GameService {
@@ -12,11 +15,17 @@ export class GameService {
 
   constructor(private _http: Http) { }
 
-  getGameList(query:string = null){
-    if (query){
-      this.gamesList = this.BASE_URL + 'games?query=' + query
-
-    }
+  getGameList(){
     return this._http.get(this.gamesList).map(res=>res.json())
+  }
+
+  search(query: Observable<string>) {
+    return query.debounceTime(350)
+      .distinctUntilChanged()
+      .switchMap(_query => {
+        return this._http.get(this.gamesList + '?query=' + _query)
+          .map(res => res.json());
+      });
+
   }
 }
