@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var api = require('./app/api');
+var auth = require('./app/auth');
 
 var app = express();
 
@@ -26,3 +27,4 @@ app.listen(port, function () {
 });
 
 api.init();
+auth.initAuth();
