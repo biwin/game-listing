@@ -9,13 +9,15 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import {AppRoutes, appRoutingProviders} from "./app.routing";
 import {GameService} from "./services/game.service";
+import { GameCardComponent } from './cards/game-card/game-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    GameCardComponent
   ],
   imports: [
     BrowserModule,
