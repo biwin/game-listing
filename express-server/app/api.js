@@ -32,8 +32,8 @@ router.get('/', function (req, res) {
 
 router.get('/games', function (req, res) {
     var searchTerm = req.query.query;
-    if (searchTerm.length>=1){
-        Game.find({title: { $regex: '.*' + searchTerm + '*.' }}, function(err, games){
+    if (searchTerm){
+        Game.find({title: { $regex: '(' + searchTerm + ')', '$options': 'i' }}, function(err, games){
             if (err){
                 res.status(404).json({message: "No records found"});
             }
