@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from "../../services/game.service";
 import {Game} from "../../interfaces/game";
+import {Subject} from "rxjs";
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,9 @@ import {Game} from "../../interfaces/game";
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  games: Game[];
+  public games: Game[];
+
+  searchTerm = new Subject<string>();
 
   public sortOptions: any[] = [
     { "optionId": 'sH', "optionName": "Score: Higher first" },
@@ -24,10 +27,21 @@ export class HomeComponent implements OnInit {
   ];
 
 
-  constructor(private _game: GameService) { }
+  constructor(private _game: GameService) {
+    this.searchTerm.debounceTime(300).distinctUntilChanged().subscribe(res=>{
+      console.log("trying...");
+      _game.getGameList(res).subscribe(_res => {
+        this.games = _res;
+      })
+    })
+  }
 
   ngOnInit() {
-    this._game.getGameList().subscribe(res=>{
+    this.getGameList();
+  }
+
+  getGameList(query: string = null){
+    this._game.getGameList(query).subscribe(res=>{
       this.games = res;
     })
   }
