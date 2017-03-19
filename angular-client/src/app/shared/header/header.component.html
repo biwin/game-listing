@@ -1,12 +1,28 @@
-<a [routerLink]="['/']">
-  landing
+<div class="container">
+  <a class="lol"  [routerLink]="['/']">
+    Homepage
 
-</a>
+  </a>
 
-<a  [routerLink]="['/games']" *ngIf="loggedIn">
-  Games
-</a>
+  <a class="lol"  [routerLink]="['/games']" *ngIf="loggedIn">
+    Games
+  </a>
 
-<a  *ngIf="loggedIn" (click)="signOut()">
-  SignOUt
-</a>
+  <button class="lol" *ngIf="loggedIn" (click)="signOut()">
+    SignOUt
+  </button>
+</div>
+
+
+<style>
+  .lol{
+    font-size: 2em;
+    margin-top: 15px!important;
+    color: #000
+  }
+  .container{
+    padding: 15px;
+    background-color: teal;
+  }
+
+</style>
