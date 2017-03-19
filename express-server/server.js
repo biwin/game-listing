@@ -4,8 +4,13 @@
 var express = require('express');
 var api = require('./app/api');
 var auth = require('./app/auth');
+const bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // CORS MIDDLEWARE
 app.use(function(req, res, next) {
