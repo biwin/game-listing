@@ -8,7 +8,7 @@ var csv = require('csvtojson');
 var request = require('request');
 
 // CONNECT TO MONGO
-const dbHost = 'mongodb://database/games-docker';
+const dbHost = 'mongodb://database/games-docked';
 mongoose.connect(dbHost);
 
 
@@ -19,7 +19,7 @@ const GameSchema = mongoose.Schema({
     platform: String,
     score: Number,
     genre: String,
-    editors_choice: Boolean
+    editors_choice: String
 });
 
 const Game = mongoose.model('Game', GameSchema);

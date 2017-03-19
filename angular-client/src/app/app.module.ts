@@ -4,17 +4,31 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
+import { HomeComponent } from './pages/home/home.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import {AppRoutes, appRoutingProviders} from "./app.routing";
+import {GameService} from "./services/game.service";
+import { GameCardComponent } from './cards/game-card/game-card.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
+    HeaderComponent,
+    FooterComponent,
+    GameCardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    AppRoutes
   ],
-  providers: [],
+  providers: [
+    appRoutingProviders,
+    GameService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
