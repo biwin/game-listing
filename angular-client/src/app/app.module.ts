@@ -14,6 +14,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
 import {Ng2Webstorage} from "ng2-webstorage";
+import {Ng2PaginationModule} from "ng2-pagination";
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import {Ng2Webstorage} from "ng2-webstorage";
     FormsModule,
     HttpModule,
     AppRoutes,
+    Ng2PaginationModule,
     Ng2Webstorage.forRoot({
       separator: '_',
       prefix: ''
