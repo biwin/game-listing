@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from "../../services/game.service";
 import {Game} from "../../interfaces/game";
+import {Subject} from "rxjs";
+import {LocalStorageService} from "ng2-webstorage";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -8,7 +11,10 @@ import {Game} from "../../interfaces/game";
   styleUrls: ['./home.component.sass']
 })
 export class HomeComponent implements OnInit {
-  games: Game[];
+  private loggedIn;
+
+  public games: Game[];
+  query = new Subject<string>();
 
   public sortOptions: any[] = [
     { "optionId": 'sH', "optionName": "Score: Higher first" },
@@ -24,12 +30,23 @@ export class HomeComponent implements OnInit {
   ];
 
 
-  constructor(private _game: GameService) { }
+  constructor(private _game: GameService, private _ls: LocalStorageService, private _router: Router) {
+    _game.search(this.query)
+      .subscribe(results => {
+        this.games = results;
+        console.log(results)
+      });
+  }
 
   ngOnInit() {
+    this._ls.observe('loggedIn').subscribe(
+      res=>this.loggedIn = res
+    );
+
     this._game.getGameList().subscribe(res=>{
       this.games = res;
-    })
+    });
+
   }
 
 

@@ -10,6 +10,11 @@ import { FooterComponent } from './shared/footer/footer.component';
 import {AppRoutes, appRoutingProviders} from "./app.routing";
 import {GameService} from "./services/game.service";
 import { GameCardComponent } from './cards/game-card/game-card.component';
+import { LandingComponent } from './pages/landing/landing.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
+import {Ng2Webstorage} from "ng2-webstorage";
+import {Ng2PaginationModule} from "ng2-pagination";
 
 @NgModule({
   declarations: [
@@ -17,13 +22,21 @@ import { GameCardComponent } from './cards/game-card/game-card.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    GameCardComponent
+    GameCardComponent,
+    LandingComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    AppRoutes
+    AppRoutes,
+    Ng2PaginationModule,
+    Ng2Webstorage.forRoot({
+      separator: '_',
+      prefix: ''
+    })
   ],
   providers: [
     appRoutingProviders,

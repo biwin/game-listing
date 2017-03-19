@@ -3,13 +3,19 @@
  */
 var express = require('express');
 var api = require('./app/api');
+var auth = require('./app/auth');
+const bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
 
 // CORS MIDDLEWARE
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Allow-Headers", "Authorization, Origin, X-Requested-With, Content-Type, Accept");
     next()
 });
 
@@ -26,3 +32,4 @@ app.listen(port, function () {
 });
 
 api.init();
+auth.initAuth();
