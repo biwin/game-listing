@@ -20,12 +20,14 @@ export class LoginComponent implements OnInit {
     let hash = btoa(formData.username + ":" + formData.password);
     let headers = new Headers();
     headers.append("Authorization", "Basic " + hash);
-    this._ls.store('hash', hash);
+
     this._http.get('http://localhost:3000/games', {
       headers: headers
     }).subscribe(res=>{
       if (res.status === 200){
-        this._router.navigate(['/games'])
+        this._ls.store('hash', hash);
+        this._ls.store('loggedIn', true);
+        this._router.navigate(['/games']);
       }
     });
 

@@ -6,3 +6,7 @@
 <a  [routerLink]="['/games']">
   Games
 </a>
+
+<a  *ngIf="loggedIn" (click)="signOut()">
+  SignOUt
+</a>
