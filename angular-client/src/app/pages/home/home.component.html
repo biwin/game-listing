@@ -7,5 +7,9 @@ Sort
 </select>
 
 <input (keyup)="query.next($event.target.value)">
-<app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
-
+<div class="mdl-gird mdl-grid--no-spacing">
+  <app-game-card
+    class="mdl-cell mdl-cell--4-col user_card mdl-color--green-500"
+    *ngFor="let game of games| paginate: { itemsPerPage: 8, currentPage: p }" [game]="game"></app-game-card>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
