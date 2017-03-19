@@ -21,7 +21,7 @@ const GameSchema = mongoose.Schema({
     editors_choice: Boolean
 });
 
-
+const Game = mongoose.model('Game', GameSchema);
 
 
 // ROUTES
