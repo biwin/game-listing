@@ -32,8 +32,3 @@ export class LoginComponent implements OnInit {
   }
 
 }
-
-export interface Context{
-  username: string,
-  password: string
-}
