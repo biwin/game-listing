@@ -38,6 +38,7 @@ router.get('/games', function (req, res) {
 });
 
 router.get('/games/:id', function(req, res){
+    //noinspection JSUnresolvedFunction
     Game.findById(req.params.id, function(err, game){
         if (err) res.status(500).send(err);
         res.status(200).json(game);
