@@ -1,4 +1,9 @@
 <app-header></app-header>
 <h3>Home component works</h3>
+Sort
+<select (change)="sortData($event.target.value)">
+  <option [value]="">Select Option</option>
+  <option *ngFor="let option of sortOptions" [value]="option.optionId">{{option.optionName}}</option>
+</select>
 <app-game-card *ngFor="let game of games" [game]="game"></app-game-card>
 <app-footer></app-footer>
