@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import {AppRoutes, appRoutingProviders} from "./app.routing";
+import {GameService} from "./services/game.service";
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import {AppRoutes, appRoutingProviders} from "./app.routing";
     AppRoutes
   ],
   providers: [
-    appRoutingProviders
+    appRoutingProviders,
+    GameService
   ],
   bootstrap: [AppComponent]
 })
