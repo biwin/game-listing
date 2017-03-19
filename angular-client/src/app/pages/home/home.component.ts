@@ -10,8 +10,7 @@ import {Subject} from "rxjs";
 })
 export class HomeComponent implements OnInit {
   public games: Game[];
-
-  searchTerm = new Subject<string>();
+  query = new Subject<string>();
 
   public sortOptions: any[] = [
     { "optionId": 'sH', "optionName": "Score: Higher first" },
@@ -28,20 +27,15 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private _game: GameService) {
-    this.searchTerm.debounceTime(300).distinctUntilChanged().subscribe(res=>{
-      console.log("trying...");
-      _game.getGameList(res).subscribe(_res => {
-        this.games = _res;
-      })
-    })
+    _game.search(this.query)
+      .subscribe(results => {
+        this.games = results;
+        console.log(results)
+      });
   }
 
   ngOnInit() {
-    this.getGameList();
-  }
-
-  getGameList(query: string = null){
-    this._game.getGameList(query).subscribe(res=>{
+    this._game.getGameList().subscribe(res=>{
       this.games = res;
     })
   }
